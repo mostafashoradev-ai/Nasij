@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>المحمدي للاقمشه والمفروشات</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cairo:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+
+  <body>
+    <nav class="nav" id="mainNav">
+      <div class="nav-logo">المحمدي للاقمشه <span></span></div>
+      <ul class="nav-links">
+        <li><a href="#hero">الرئيسية</a></li>
+        <li><a href="#categories">الأقسام</a></li>
+        <li><a href="#products">المنتجات</a></li>
+        <li><a href="#why-us">لماذا نحن</a></li>
+        <li><a href="#cta" class="nav-cta-btn">اطلبي الآن</a></li>
+        <li><a href="admin/login.html">دخول الإدارة</a></li>
+      </ul>
+      <div class="hamburger" id="hamburgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <div class="mobile-nav" id="mobileNav">
+      <button class="mobile-nav-close" id="mobileNavClose">&times;</button>
+      <a href="#hero" class="mobile-link">الرئيسية</a>
+      <a href="#categories" class="mobile-link">الأقسام</a>
+      <a href="#products" class="mobile-link">المنتجات</a>
+      <a href="#why-us" class="mobile-link">لماذا نحن</a>
+      <a href="#cta" class="mobile-link">اطلبي الآن</a>
+      <a href="admin/login.html" class="mobile-link">دخول الإدارة</a>
+    </div>
+
+    <header class="hero" id="hero">
+      <img src="./image/Nasij2.png" alt="" />
+      <div class="hero-pattern"></div>
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="hero-badge">تشكيلة حصرية جديدة</div>
+          <h1 class="hero-h1">
+            أقمشة تروي <span class="line-accent">قصة أناقتك</span>
+            <em>ولمسة تميزك</em>
+          </h1>
+          <p class="hero-p">
+            اكتشفي فخامة الحرير الطبيعي، الدانتيل الفرنسي، والمخمل الملكي
+            المختار بعناية ليناسب إطلالتك الفريدة في كل مناسبة.
+          </p>
+          <div class="hero-actions">
+            <a href="#products" class="btn-primary">تصفحي المنتجات</a>
+            <a href="#categories" class="btn-ghost">اكتشفي الأقسام</a>
+          </div>
+          <div class="hero-scroll">
+            <span class="scroll-dot"></span>
+            <span class="scroll-line"></span>
+            <span>اسحبي للاكتشاف</span>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="swatch-wrap">
+            <div class="swatch s1">
+              <img src="./image/download (3).jpeg" alt="" />
+            </div>
+            <div class="swatch s2">
+              <img src="./image/download (4).jpeg" alt="" />
+            </div>
+            <div class="swatch s3">
+              <img src="./image/download (2).jpeg" alt="" />
+            </div>
+            <div class="swatch-label">قوام الفخامة</div>
+          </div>
+          <div class="float-tag ft1">
+            <i class="fa-solid fa-gem"></i> مخمل ملكي
+          </div>
+          <div class="float-tag ft2">
+            <i class="fa-solid fa-feather"></i> حرير طبيعي
+          </div>
+          <div class="float-tag ft3">
+            <i class="fa-solid fa-ruler"></i> مطرز يدويًا
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-num">+10k</span>
+        <span class="stat-label">عميلة سعيدة</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">+500</span>
+        <span class="stat-label">تصميم وخامة</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">جودة مضمونة</span>
+      </div>
+    </section>
+
+    <section class="cats-bg" id="categories">
+      <div class="section-wrap">
+        <div class="section-head reveal up">
+          <span class="eyebrow">التصنيفات</span>
+          <h2 class="section-title">أقسام مجموعتنا الرائعة</h2>
+          <p class="section-sub">
+            عالم من الخامات الفاخرة المصممة خصيصاً لتلبي أرقى الأذواق وتناسب شتى
+            المناسبات.
+          </p>
+        </div>
+        <div class="cats-grid">
+          <div class="cat-card reveal up reveal-d1">
+            <div class="cat-inner">
+              <img src="./image/download (6).jpeg" alt="" />
+              <span class="cat-name">الحرير والشيفون</span>
+              <span class="cat-count">120 منتج</span>
+            </div>
+          </div>
+          <div class="cat-card reveal up reveal-d2">
+            <div class="cat-inner">
+              <img src="./image/download (5).jpeg" alt="" />
+              <span class="cat-name">الدانتيل والجيبير</span>
+              <span class="cat-count">85 منتج</span>
+            </div>
+          </div>
+          <div class="cat-card reveal up reveal-d3">
+            <div class="cat-inner">
+              <img src="./image/download (7).jpeg" alt="" />
+              <span class="cat-name">المخمل والقطيفة</span>
+              <span class="cat-count">64 منتج</span>
+            </div>
+          </div>
+          <div class="cat-card reveal up reveal-d4">
+            <div class="cat-inner">
+              <img src="./image/download (8).jpeg" alt="" />
+              <span class="cat-name">الأقمشة المطرزة</span>
+              <span class="cat-count">140 منتج</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-bg" id="products">
+      <div class="section-wrap">
+        <div class="section-head reveal up">
+          <span class="eyebrow">المختارات</span>
+          <h2 class="section-title">الأكثر مبيعاً وطلباً</h2>
+          <p class="section-sub">
+            إليكِ باقة من قطعنا الأيقونية التي نالت إعجاب خبيرات الموضة والأناقة
+            هذا الموسم.
+          </p>
+        </div>
+        <div class="products-grid" id="productsGrid">
+          <!-- سيتم تحميل المنتجات تلقائياً من Firebase -->
+        </div>
+      </div>
+    </section>
+
+    <section class="why-bg" id="why-us">
+      <div class="section-wrap">
+        <div class="section-head reveal up">
+          <span class="eyebrow">ميزتنا</span>
+          <h2 class="section-title">لماذا تختارين المحمدي</h2>
+          <p class="section-sub">
+            نهتم بأدق التفاصيل لنضمن لكِ تجربة تسوق واقتناء تفوق توقعاتك دائمًا.
+          </p>
+        </div>
+        <div class="why-grid">
+          <div class="why-card reveal up reveal-d1">
+            <span class="why-icon"><i class="fa-solid fa-award"></i></span>
+            <h3 class="why-title">أعلى معايير الجودة</h3>
+            <p class="why-desc">
+              نستورد خاماتنا من أرقى بيوت الأزياء ومعامل النسيج في إيطاليا،
+              فرنسا واليابان.
+            </p>
+          </div>
+          <div class="why-card reveal up reveal-d2">
+            <span class="why-icon"><i class="fa-solid fa-scissors"></i></span>
+            <h3 class="why-title">سياسة الطلب والتوصيل</h3>
+            <p class="why-desc">
+              نظراً لعدم توفر خدمة المعاينة عند الاستلام، نرجو منكم التأكد من
+              اختيار المنتج والمقاسات المطلوبة بعناية. يتم شحن الطلبات مباشرة
+              إلى عنوانكم، ونحن نضمن لكم جودة خاماتنا الراقية.
+            </p>
+          </div>
+          <div class="why-card reveal up reveal-d3">
+            <span class="why-icon"><i class="fa-solid fa-truck-fast"></i></span>
+            <h3 class="why-title">شحن آمن وسريع</h3>
+            <p class="why-desc">
+              تصلك أقمشتك مغلفة بعبوات خاصة تحمي الألياف الحساسة والتطريز من أي
+              تلف.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testi-bg">
+      <div class="testi-inner">
+        <div class="section-head reveal up" style="text-align: center">
+          <span
+            class="eyebrow"
+            style="border-color: var(--mauve); color: var(--mauve)"
+            >آراء العميلات</span
+          >
+          <h2 class="section-title" style="color: var(--white)">
+            قصص نجاح وإطلالات ساحرة
+          </h2>
+        </div>
+        <div class="testi-cards">
+          <div class="testi-card reveal scale reveal-d1">
+            <div class="testi-stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testi-text">
+              <span class="testi-open"
+                >الحرير طبيعي وخامته تجنن، صممت منه فستان زواجي وطلعت ملكة الحفل
+                صدقاً!</span
+              ><span class="testi-close"></span>
+            </p>
+            <div class="testi-author">
+              <div class="testi-meta">
+                <span class="testi-name">سارة عبد العزيز</span>
+                <span class="testi-city">الرياض</span>
+              </div>
+              <div class="testi-avatar ta1">S</div>
+            </div>
+          </div>
+          <div class="testi-card reveal scale reveal-d2">
+            <div class="testi-stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testi-text">
+              <span class="testi-open"
+                >التوصيل كان سريع جداً والتغليف يحافظ على التطريز، هذي مو آخر
+                مرة أطلب منكم.</span
+              ><span class="testi-close"></span>
+            </p>
+            <div class="testi-author">
+              <div class="testi-meta">
+                <span class="testi-name">نورة الشمري</span>
+                <span class="testi-city">جدة</span>
+              </div>
+              <div class="testi-avatar ta2">N</div>
+            </div>
+          </div>
+          <div class="testi-card reveal scale reveal-d3">
+            <div class="testi-stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testi-text">
+              <span class="testi-open"
+                >الدانتيل الفرنسي جودته فاخرة جداً وخفيف وراقي باللبس، شكراً
+                نسيج على الأمانة.</span
+              ><span class="testi-close"></span>
+            </p>
+            <div class="testi-author">
+              <div class="testi-meta">
+                <span class="testi-name">منى الهاشم</span>
+                <span class="testi-city">الدمام</span>
+              </div>
+              <div class="testi-avatar ta3">M</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-bg">
+      <div class="section-wrap">
+        <div class="section-head reveal up">
+          <span class="eyebrow">الخطوات</span>
+          <h2 class="section-title">كيفية الطلب والاستلام</h2>
+        </div>
+        <div class="steps-row">
+          <div class="step reveal up reveal-d1">
+            <div class="step-num">1</div>
+            <h3 class="step-title">اختاري قماشك</h3>
+            <p class="step-desc">تصفحي القطع الحصرية وحددي الخامة المناسبة.</p>
+          </div>
+          <div class="step reveal up reveal-d2">
+            <div class="step-num">2</div>
+            <h3 class="step-title">حددي الأمتار</h3>
+            <p class="step-desc">اضغطي طلب سريع وعيني الطول المطلوب بدقة.</p>
+          </div>
+          <div class="step reveal up reveal-d3">
+            <div class="step-num">3</div>
+            <h3 class="step-title">أكدي البيانات</h3>
+            <p class="step-desc">املئي استمارة العنوان والاسم لتجهيز طلبك.</p>
+          </div>
+          <div class="step reveal up reveal-d4">
+            <div class="step-num">4</div>
+            <h3 class="step-title">تواصل وتوصيل</h3>
+            <p class="step-desc">
+              سنرسل لكِ تفاصيل الفاتورة ونشحن الطلب فوراً.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-bg" id="cta">
+      <div class="cta-inner reveal scale">
+        <h2 class="cta-h2">انضمي إلى عالم نسيج المخملي</h2>
+        <p class="cta-p">
+          اشتركي في نشرتنا البريدية لتكوني أول من يصله إشعارات القطع المحدودة
+          والتخفيضات الموسمية الكبرى.
+        </p>
+        <form
+          class="cta-form"
+          onsubmit="
+            event.preventDefault();
+            alert('شكراً لثقتك وانضمامك إلينا!');
+          "
+        >
+          <button type="submit" class="btn-subscribe">انضمام الآن</button>
+          <input
+            type="email"
+            class="cta-input"
+            placeholder="أدخلي بريدك الإلكتروني هنا..."
+            required
+          />
+        </form>
+      </div>
+    </section>
+
+    <section class="team-section" id="team">
+      <div class="section-head reveal up reveal-d1">
+        <h2>شركاء النجاح</h2>
+        <p>فريق العمل والخبرات التي تقف خلف فخامة الأقمشة</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card reveal up reveal-d2">
+          <div class="team-img">
+            <img src="./image/download (12).jpeg" alt="شريك المؤسس" />
+          </div>
+          <h3>محمود محمد</h3>
+          <span>مؤسس المحل</span>
+          <p>"نسعى دائماً لتقديم أجود أنواع الأقمشة الفاخرة لعملائنا."</p>
+        </div>
+
+        <div class="team-card highlight reveal up reveal-d3">
+          <div class="team-img">
+            <img src="./image/download (10).jpeg" alt="مصطفى - مطور الموقع" />
+          </div>
+          <h3>مصطفى شوره</h3>
+          <span>مهندس تطوير الموقع</span>
+          <p>"سعدت بتصميم وبرمجة هذه الواجهة الرقمية لتليق بفخامة متجركم."</p>
+          <div class="dev-badge"><i class="fa-solid fa-code"></i> المطور</div>
+        </div>
+
+        <div class="team-card reveal up reveal-d4">
+          <div class="team-img">
+            <img src="./image/download (11).jpeg" alt="شريك المؤسس" />
+          </div>
+          <h3>علي محمد</h3>
+          <span>مدير العمليات</span>
+          <p>"نختار الخامات بعناية لتناسب إطلالتك الفريدة في كل مناسبة."</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="map-bg" id="mapSection">
+      <div class="section-wrap">
+        <div class="map-wrap reveal up">
+          <div class="map-info">
+            <div class="section-head">
+              <span class="eyebrow">موقعنا</span>
+              <h2 class="section-title">زورونا في قلب المدينة</h2>
+              <p class="section-sub">
+                استكشفوا موقع معرض نسيج للمفروشات الفاخرة والخامات الراقية مع كل
+                تفاصيل التواصل وساعات العمل.
+              </p>
+            </div>
+            <div class="map-details">
+              <div class="map-detail-item">
+                <div class="map-detail-text">
+                  <div class="map-detail-title">العنوان</div>
+                  <div class="map-detail-sub">
+                    قنا - الوقف - المراشدة - مدخل نجع الجنينة
+                  </div>
+                </div>
+                <div class="map-detail-icon">
+                  <i
+                    class="fa-solid fa-location-dot"
+                    style="justify-content: flex-end"
+                  ></i>
+                </div>
+              </div>
+              <div class="map-detail-item">
+                <div class="map-detail-text">
+                  <div class="map-detail-title">الهاتف</div>
+                  <div class="map-detail-sub">01022819919</div>
+                </div>
+                <div class="map-detail-icon">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+              </div>
+              <div class="map-detail-item">
+                <div class="map-detail-text">
+                  <div class="map-detail-title">ساعات العمل</div>
+                  <div class="map-detail-sub">الأحد - الخميس 8 ص - 12 م</div>
+                </div>
+                <div class="map-detail-icon">
+                  <i class="fa-solid fa-clock"></i>
+                </div>
+              </div>
+            </div>
+            <a
+              href="https://www.google.com/maps?q=26.096268983341027,32.4735349404724&z=17"
+              target="_blank"
+              class="btn-primary map-btn"
+              >احصل على الاتجاهات</a
+            >
+          </div>
+          <div class="map-frame">
+            <iframe
+              src="https://maps.google.com/maps?q=26.096268983341027,32.4735349404724&z=17&output=embed"
+              width="100%"
+              height="450"
+              style="border: 0; border-radius: 18px; overflow: hidden"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">المحمدي لاقمشه النساء</div>
+          <p class="footer-tagline">
+            مفهوم جديد للفخامة والأناقة في عالم الأقمشة النسائية الراقية
+            والمستوردة.
+          </p>
+        </div>
+        <div>
+          <h4 class="footer-col-title">روابط سريعة</h4>
+          <ul class="footer-links-list">
+            <li><a href="#hero">الرئيسية</a></li>
+            <li><a href="#categories">الأقسام</a></li>
+            <li><a href="#products">المنتجات</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">الدعم والمساعدة</h4>
+          <ul class="footer-links-list">
+            <li><a href="#">الشروط والأحكام</a></li>
+            <li><a href="#">سياسة الاستبدال</a></li>
+            <li><a href="#">الأسئلة الشائعة</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">اتصلي بنا</h4>
+          <ul class="footer-links-list">
+            <li><a href="mailto:info@nasij.com">info@nasij.com</a></li>
+            <li><a href="tel:+966500000000">+966 50 000 0000</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          جميع الحقوق محفوظة &copy; 2026 نسيج. صُنع بكل حب.
+        </div>
+        <div class="footer-social">
+          <div class="social-btn"><i class="fa-brands fa-instagram"></i></div>
+          <div class="social-btn"><i class="fa-brands fa-twitter"></i></div>
+          <div class="social-btn"><i class="fa-brands fa-whatsapp"></i></div>
+        </div>
+      </div>
+    </footer>
+
+    <div
+      class="modal-overlay"
+      id="modalOverlay"
+      onclick="handleOverlayClick(event)"
+    >
+      <div class="modal">
+        <div class="modal-header">
+          <button class="modal-close" id="closeModalBtn">&times;</button>
+          <span class="modal-product-tag" id="mProductCat">التصنيف</span>
+          <h3 class="modal-title" id="modalProductName">اسم المنتج هنا</h3>
+          <p class="modal-subtitle">
+            يرجى ملء البيانات التالية لإتمام طلبك عبر الواتساب مباشرة
+          </p>
+        </div>
+        <div class="modal-body">
+          <form id="orderForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">الاسم الكامل <span>*</span></label>
+                <input
+                  type="text"
+                  class="form-input"
+                  id="fName"
+                  placeholder="الاسم الثنائي أو الثلاثي"
+                />
+                <span class="field-err" id="err-fName">هذا الحقل مطلوب</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label"
+                  >رقم الجوال (واتساب) <span>*</span></label
+                >
+                <input
+                  type="tel"
+                  class="form-input"
+                  id="fPhone"
+                  placeholder=""
+                />
+                <span class="field-err" id="err-fPhone"
+                  >أدخلي رقم جوال سعودي صحيح</span
+                >
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">المدينة <span>*</span></label>
+                <select class="form-select" id="fCity">
+                  <option value="">إختاري المدينة...</option>
+                  <option value="قنا">قنا</option>
+                </select>
+                <span class="field-err" id="err-fCity"
+                  >يرجى اختيار المدينة</span
+                >
+              </div>
+              <div class="form-group">
+                <label class="form-label"
+                  >كمية الأقمشة (بالأمتار) <span>*</span></label
+                >
+                <div class="meters-row">
+                  <button type="button" class="meters-btn" id="btnMinus">
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    class="form-input meters-input"
+                    id="fMeters"
+                    value="3"
+                    min="1"
+                    max="50"
+                    readonly
+                  />
+                  <button type="button" class="meters-btn" id="btnPlus">
+                    +
+                  </button>
+                </div>
+                <span class="field-err" id="err-fMeters"
+                  >يرجى اختيار كمية صحيحة</span
+                >
+              </div>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">العنوان بالتفصيل أو أي ملاحظات</label>
+              <textarea
+                class="form-textarea"
+                id="fAddress"
+                placeholder="اسم الحي، الشارع، رقم المنزل أو أي تعليمات خاصة للخياطة والقص..."
+              ></textarea>
+              <span class="field-err" id="err-fAddress"
+                >يرجى كتابة العنوان أو ملاحظات التوصيل</span
+              >
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-submit" id="submitOrderBtn">
+            <i
+              class="fa-brands fa-whatsapp"
+              style="margin-left: 8px; font-size: 1.2rem"
+            ></i>
+            <span>تأكيد الطلب عبر الواتساب</span>
+          </button>
+          <div class="whatsapp-note">
+            سيتم فتح محادثة الواتساب لإنهاء التفاصيل مع خدمة العملاء
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="successToast">
+      <span
+        ><i class="fa-solid fa-check-circle"></i> تم تجهيز رسالة طلبك بنجاح!
+        جاري تحويلك...</span
+      >
+    </div>
+
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>

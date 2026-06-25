@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تسجيل دخول الإدارة | نسيج</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cairo:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pg1GMY09LH2E9fXJKV0DgEV0+gyD4qvGc4mK36bFoLfbM8Pj9Y5X8smkXj4ArBf6nompdf72/rqaT1xg1olcKQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body class="admin-page cairo-400">
+    <div class="admin-card" style="max-width: 540px; margin: 5rem auto">
+      <div class="admin-header" style="justify-content: center">
+        <h1>تسجيل دخول الإدارة</h1>
+      </div>
+      <div class="admin-panel">
+        <form id="loginForm">
+          <div class="form-group">
+            <label class="form-label" for="loginEmail">البريد الإلكتروني</label>
+            <input
+              type="email"
+              id="loginEmail"
+              class="admin-input"
+              placeholder="admin@nasij.com"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="loginPassword">كلمة المرور</label>
+            <input
+              type="password"
+              id="loginPassword"
+              class="admin-input"
+              placeholder="********"
+              required
+            />
+          </div>
+          <div
+            class="admin-actions"
+            style="justify-content: center; margin-top: 2rem"
+          >
+            <button type="submit" class="admin-btn save">دخول</button>
+          </div>
+          <p
+            class="field-err"
+            id="loginError"
+            style="text-align: center; margin-top: 1rem; display: none"
+          ></p>
+        </form>
+      </div>
+    </div>
+    <script type="module" src="../js/admin.js"></script>
+  </body>
+</html>
