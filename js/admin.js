@@ -1,5 +1,5 @@
-import { db, auth } from './firebase.js';
-import { 
+import { db, auth } from "./firebase.js";
+import {
   collection,
   addDoc,
   updateDoc,
@@ -9,35 +9,36 @@ import {
   serverTimestamp,
   onSnapshot,
   orderBy,
-  query
-} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+  query,
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import {
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged
-} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+  onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-const loginForm = document.getElementById('loginForm');
-const loginError = document.getElementById('loginError');
-const logoutBtn = document.getElementById('logoutBtn');
-const productForm = document.getElementById('productForm');
-const saveProductBtn = document.getElementById('saveProductBtn');
-const clearFormBtn = document.getElementById('clearFormBtn');
-const productTableContainer = document.getElementById('productTableContainer');
-const adminEmpty = document.getElementById('adminEmpty');
+const loginForm = document.getElementById("loginForm");
+const loginError = document.getElementById("loginError");
+const logoutBtn = document.getElementById("logoutBtn");
+const productForm = document.getElementById("productForm");
+const saveProductBtn = document.getElementById("saveProductBtn");
+const clearFormBtn = document.getElementById("clearFormBtn");
+const productTableContainer = document.getElementById("productTableContainer");
+const adminEmpty = document.getElementById("adminEmpty");
 
 const productFields = {
-  id: document.getElementById('currentProductId'),
-  name: document.getElementById('prodName'),
-  category: document.getElementById('prodCategory'),
-  price: document.getElementById('prodPrice'),
-  badge: document.getElementById('prodBadge'),
-  imageUrl: document.getElementById('prodImageUrl'), 
-  color: document.getElementById('prodColor'),
-  description: document.getElementById('prodDesc'),
+  id: document.getElementById("currentProductId"),
+  name: document.getElementById("prodName"),
+  category: document.getElementById("prodCategory"),
+  price: document.getElementById("prodPrice"),
+  badge: document.getElementById("prodBadge"),
+  imageUrl: document.getElementById("prodImageUrl"),
+  order: document.getElementById("prodOrder"),
+  color: document.getElementById("prodColor"),
+  description: document.getElementById("prodDesc"),
 };
 
-const productsRef = collection(db, 'products');
+const productsRef = collection(db, "products");
 
 // دالة سحرية لتقليص حجم الصورة وضغطها لتناسب حدود الـ Firestore المجانية
 function compressAndConvertToBase64(file, maxWidth = 400, quality = 0.6) {
@@ -48,7 +49,7 @@ function compressAndConvertToBase64(file, maxWidth = 400, quality = 0.6) {
       const img = new Image();
       img.src = event.target.result;
       img.onload = () => {
-        const canvas = document.createElement('canvas');
+        const canvas = document.createElement("canvas");
         let width = img.width;
         let height = img.height;
 
@@ -60,11 +61,11 @@ function compressAndConvertToBase64(file, maxWidth = 400, quality = 0.6) {
 
         canvas.width = width;
         canvas.height = height;
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0, width, height);
 
         // ضغط الصورة بصيغة jpeg وجودة 60% لتقليل المساحة تماماً
-        const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
+        const compressedBase64 = canvas.toDataURL("image/jpeg", quality);
         resolve(compressedBase64);
       };
       img.onerror = (err) => reject(err);
@@ -76,66 +77,69 @@ function compressAndConvertToBase64(file, maxWidth = 400, quality = 0.6) {
 function showLoginError(message) {
   if (!loginError) return;
   loginError.textContent = message;
-  loginError.style.display = 'block';
+  loginError.style.display = "block";
 }
 
 function hideLoginError() {
   if (!loginError) return;
-  loginError.textContent = '';
-  loginError.style.display = 'none';
+  loginError.textContent = "";
+  loginError.style.display = "none";
 }
 
 if (loginForm) {
-  onAuthStateChanged(auth, user => {
-    if (user) window.location.href = 'dashboard.html';
+  onAuthStateChanged(auth, (user) => {
+    if (user) window.location.href = "dashboard.html";
   });
 
-  loginForm.addEventListener('submit', async event => {
+  loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     hideLoginError();
-    const email = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value.trim();
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value.trim();
     if (!email || !password) {
-      showLoginError('يرجى إدخال البريد الإلكتروني وكلمة المرور.');
+      showLoginError("يرجى إدخال البريد الإلكتروني وكلمة المرور.");
       return;
     }
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      window.location.href = 'dashboard.html';
+      window.location.href = "dashboard.html";
     } catch (err) {
-      showLoginError('فشل تسجيل الدخول. تأكدي من بياناتك وحاولي مرة أخرى.');
+      showLoginError("فشل تسجيل الدخول. تأكدي من بياناتك وحاولي مرة أخرى.");
       console.error(err);
     }
   });
 }
 
 if (logoutBtn) {
-  logoutBtn.addEventListener('click', async () => {
+  logoutBtn.addEventListener("click", async () => {
     await signOut(auth);
-    window.location.href = 'login.html';
+    window.location.href = "login.html";
   });
 }
 
 function resetProductForm() {
   if (!productFields.name) return;
-  productFields.id.value = '';
-  productFields.name.value = '';
-  productFields.category.value = '';
-  productFields.price.value = '';
-  productFields.badge.value = '';
-  productFields.imageUrl.value = null; 
-  productFields.color.value = '';
-  productFields.description.value = '';
-  saveProductBtn.textContent = 'حفظ المنتج';
+  productFields.id.value = "";
+  productFields.name.value = "";
+  productFields.category.value = "";
+  productFields.price.value = "";
+  productFields.badge.value = "";
+  productFields.imageUrl.value = ""; // 💡 تم التعديل هنا لـ '' بدلاً من null لتجنب الـ TypeError
+  productFields.color.value = "";
+  productFields.order.value = "";
+  productFields.description.value = "";
+  if (saveProductBtn) saveProductBtn.textContent = "حفظ المنتج";
 }
 
 function createProductRow(id, data) {
   return `
     <tr>
-      <td>${data.name}</td>
-      <td>${data.category}</td>
-      <td>${data.price} ر.س</td>
-      <td><span class="small-tag">${data.badge || 'بدون علامة'}</span></td>
+      <td>${data.order || 1}</td>
+      <td>${data.name || ""}</td>
+      <td>${data.category || ""}</td>
+      <td>${data.price || 0} ر.س</td>
+      <td>${data.color || "غير محدد"}</td>
+      <td><span class="small-tag">${data.badge || "بدون علامة"}</span></td>
       <td style="display:flex; gap:.5rem; justify-content:flex-end;">
         <button type="button" class="edit" data-id="${id}">تعديل</button>
         <button type="button" class="delete" data-id="${id}">حذف</button>
@@ -145,77 +149,88 @@ function createProductRow(id, data) {
 }
 
 async function listenProducts() {
-  const q = query(productsRef, orderBy('createdAt', 'desc'));
-  onSnapshot(q, snapshot => {
-    if (!productTableContainer) return;
-    productTableContainer.innerHTML = '';
-    if (snapshot.empty) {
-      if (adminEmpty) adminEmpty.style.display = 'block';
-      return;
-    }
-    if (adminEmpty) adminEmpty.style.display = 'none';
+  const q = query(productsRef, orderBy("order", "asc")); // 💡 يفضل الترتيب بالـ order اللي أنت بتدخله بإيدك عشان يتحكم في الترتيب في المتجر
+  onSnapshot(
+    q,
+    (snapshot) => {
+      if (!productTableContainer) return;
+      productTableContainer.innerHTML = "";
+      if (snapshot.empty) {
+        if (adminEmpty) adminEmpty.style.display = "block";
+        return;
+      }
+      if (adminEmpty) adminEmpty.style.display = "none";
 
-    const table = document.createElement('table');
-    table.className = 'admin-table';
-    table.innerHTML = `
+      const table = document.createElement("table");
+      table.className = "admin-table";
+      // 💡 تم إعادة ترتيب الـ th هنا لتطابق تماماً خلايا الـ tbody الناتجة من createProductRow
+      table.innerHTML = `
       <thead>
         <tr>
+          <th>الترتيب</th>
           <th>المنتج</th>
           <th>التصنيف</th>
           <th>السعر</th>
-          <th>حالة</th>
+          <th>اللون</th>
+          <th>الحالة/العلامة</th>
           <th>الإجراءات</th>
         </tr>
       </thead>
       <tbody></tbody>
     `;
 
-    const tbody = table.querySelector('tbody');
-    snapshot.forEach(docSnap => {
-      const data = docSnap.data();
-      tbody.insertAdjacentHTML('beforeend', createProductRow(docSnap.id, data));
-    });
+      const tbody = table.querySelector("tbody");
+      snapshot.forEach((docSnap) => {
+        const data = docSnap.data();
+        tbody.insertAdjacentHTML(
+          "beforeend",
+          createProductRow(docSnap.id, data),
+        );
+      });
 
-    productTableContainer.appendChild(table);
-    bindProductActions();
-  }, err => {
-    console.error('Firestore listen error', err);
-  });
+      productTableContainer.appendChild(table);
+      bindProductActions();
+    },
+    (err) => {
+      console.error("Firestore listen error", err);
+    },
+  );
 }
 
 function bindProductActions() {
-  productTableContainer.querySelectorAll('button.edit').forEach(btn => {
-    btn.addEventListener('click', () => loadProductToForm(btn.dataset.id));
+  productTableContainer.querySelectorAll("button.edit").forEach((btn) => {
+    btn.addEventListener("click", () => loadProductToForm(btn.dataset.id));
   });
-  productTableContainer.querySelectorAll('button.delete').forEach(btn => {
-    btn.addEventListener('click', () => removeProduct(btn.dataset.id));
+  productTableContainer.querySelectorAll("button.delete").forEach((btn) => {
+    btn.addEventListener("click", () => removeProduct(btn.dataset.id));
   });
 }
 
 async function loadProductToForm(id) {
-  const docRef = doc(db, 'products', id);
+  const docRef = doc(db, "products", id);
   try {
     const snap = await getDoc(docRef);
     if (!snap.exists()) return;
     const data = snap.data();
     productFields.id.value = id;
-    productFields.name.value = data.name || '';
-    productFields.category.value = data.category || '';
-    productFields.price.value = data.price || '';
-    productFields.badge.value = data.badge || '';
-    productFields.imageUrl.value = null; 
-    productFields.color.value = data.color || '';
-    productFields.description.value = data.description || '';
-    saveProductBtn.textContent = 'تحديث المنتج';
+    productFields.name.value = data.name || "";
+    productFields.category.value = data.category || "";
+    productFields.price.value = data.price || "";
+    productFields.badge.value = data.badge || "";
+    productFields.imageUrl.value = ""; // إدخال الملفات يترك فارغاً عند التعديل إلا لو أراد رفع صورة جديدة
+    productFields.color.value = data.color || "";
+    productFields.description.value = data.description || "";
+    productFields.order.value = data.order || "";
+    if (saveProductBtn) saveProductBtn.textContent = "تحديث المنتج";
   } catch (err) {
     console.error(err);
   }
 }
 
 async function removeProduct(id) {
-  if (!confirm('هل أنت متأكد من حذف هذا المنتج؟')) return;
+  if (!confirm("هل أنت متأكد من حذف هذا المنتج؟")) return;
   try {
-    await deleteDoc(doc(db, 'products', id));
+    await deleteDoc(doc(db, "products", id));
   } catch (err) {
     console.error(err);
   }
@@ -228,16 +243,20 @@ async function saveProduct() {
   const badge = productFields.badge.value.trim();
   const color = productFields.color.value.trim();
   const description = productFields.description.value.trim();
-  
-  const imageFile = productFields.imageUrl && productFields.imageUrl.files ? productFields.imageUrl.files[0] : null; 
+  const order = Number(productFields.order.value);
 
-  if (!name || !category || !price) {
-    alert('يرجى تعبئة الاسم، التصنيف، والسعر.');
+  const imageFile =
+    productFields.imageUrl && productFields.imageUrl.files
+      ? productFields.imageUrl.files[0]
+      : null;
+
+  if (!name || !category || !price || !order) {
+    alert("يرجى تعبئة جميع الحقول المطلوبة.");
     return;
   }
 
   if (!productFields.id.value && !imageFile) {
-    alert('يرجى اختيار صورة للمنتج أولاً.');
+    alert("يرجى اختيار صورة للمنتج أولاً.");
     return;
   }
 
@@ -256,6 +275,7 @@ async function saveProduct() {
       badge,
       color,
       description,
+      order,
       updatedAt: serverTimestamp(),
     };
 
@@ -264,26 +284,30 @@ async function saveProduct() {
     }
 
     if (productFields.id.value) {
-      const docRef = doc(db, 'products', productFields.id.value);
+      const docRef = doc(db, "products", productFields.id.value);
       await updateDoc(docRef, payload);
-      alert('تم تحديث المنتج بنجاح');
+      alert("تم تحديث المنتج بنجاح");
     } else {
-      await addDoc(productsRef, { ...payload, imageUrl: finalImageUrl, createdAt: serverTimestamp() });
-      alert('تم إضافة المنتج بنجاح');
+      await addDoc(productsRef, {
+        ...payload,
+        imageUrl: finalImageUrl,
+        createdAt: serverTimestamp(),
+      });
+      alert("تم إضافة المنتج بنجاح");
     }
-    
+
     resetProductForm();
   } catch (err) {
     console.error("Error saving product: ", err);
-    alert('حدث خطأ أثناء حفظ البيانات. تأكد من حجم الحقول.');
+    alert("حدث خطأ أثناء حفظ البيانات. تأكد من حجم الحقول.");
   }
 }
 
 async function initAdmin() {
   if (!logoutBtn) return;
-  onAuthStateChanged(auth, user => {
+  onAuthStateChanged(auth, (user) => {
     if (!user) {
-      window.location.href = 'login.html';
+      window.location.href = "login.html";
       return;
     }
     listenProducts();
@@ -291,10 +315,10 @@ async function initAdmin() {
 }
 
 if (saveProductBtn) {
-  saveProductBtn.addEventListener('click', saveProduct);
+  saveProductBtn.addEventListener("click", saveProduct);
 }
 if (clearFormBtn) {
-  clearFormBtn.addEventListener('click', resetProductForm);
+  clearFormBtn.addEventListener("click", resetProductForm);
 }
 if (productTableContainer) {
   initAdmin();
